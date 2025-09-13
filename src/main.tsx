@@ -8,7 +8,10 @@ const queryClient = new QueryClient();
 
 if (import.meta.env.DEV) {
   const { worker } = await import("./mocks/browser");
-  await worker.start({ onUnhandledRequest: "bypass" });
+  await worker.start({
+    serviceWorker: { url: "/mockServiceWorker.js" },
+    onUnhandledRequest: "bypass",
+  });
 }
 
 createRoot(document.getElementById("root")!).render(

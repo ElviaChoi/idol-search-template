@@ -5,10 +5,7 @@ export default function Footer() {
   return (
     <footer className='bg-gray-50 border-t border-gray-200'>
       <div className='mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row'>
-        <p className='text-sm text-gray-600'>
-          <span className='font-semibold text-fuchsia-600'>DingDing</span> —
-          아이돌 스케줄 검색 서비스
-        </p>
+        <span className='font-semibold text-fuchsia-600'>DingDing</span>
 
         <nav className='flex gap-6 text-sm text-gray-500'>
           <a href='#' className='hover:text-fuchsia-600'>
