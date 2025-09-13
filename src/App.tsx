@@ -1,7 +1,5 @@
-import "./App.css";
+import IdolSearchPage from "./pages/idolSearch/IdolSearchPage";
 
-function App() {
-  return <> </>;
+export default function App() {
+  return <IdolSearchPage />;
 }
-
-export default App;
