@@ -10,6 +10,7 @@ const getAvatarUrl = (name: string, id: number) =>
   )}-${id}`;
 
 type Idol = RealIdol;
+const POSITIONS_KO = ["보컬", "댄스", "랩", "센터"];
 
 function makeTrainees(): Idol[] {
   const POSITIONS = ["보컬", "댄스", "랩", "센터"];
@@ -29,8 +30,9 @@ function makeTrainees(): Idol[] {
 }
 
 const ALL_IDOLS: Idol[] = [
-  ...REAL_IDOLS.map((i) => ({
+  ...REAL_IDOLS.map((i, idx) => ({
     ...i,
+    position: i.position ?? POSITIONS_KO[idx % POSITIONS_KO.length],
     avatarUrl: i.avatarUrl?.trim() ? i.avatarUrl : getAvatarUrl(i.name, i.id),
   })),
   ...makeTrainees(),

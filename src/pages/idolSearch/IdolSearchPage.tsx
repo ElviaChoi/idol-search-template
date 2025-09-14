@@ -5,6 +5,7 @@ import { searchIdols } from "./api";
 import type { Idol } from "./types";
 import SearchBar from "./SearchBar";
 import { useDebounce } from "../../hooks/useDebounce";
+import IdolSearchList from "./IdolSearchList";
 
 export default function IdolSearchPage() {
   const [keyword, setKeyword] = useState("");
@@ -33,6 +34,8 @@ export default function IdolSearchPage() {
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
 
+  const isSearching = debounced.trim().length > 0;
+
   return (
     <div className='mx-auto max-w-6xl px-4 py-10'>
       <h1 className='text-2xl font-bold text-center'>아이돌 검색</h1>
@@ -54,15 +57,16 @@ export default function IdolSearchPage() {
 
         {!isLoading && !isError && items.length > 0 && (
           <IdolSearchList
-            items={items}
+            idols={items}
+            isSearching={isSearching}
             isFetchingNextPage={isFetchingNextPage}
             hasNextPage={hasNextPage}
             fetchNextPage={fetchNextPage}
+            onCardClick={() => {}}
+            toggleFavorite={() => {}}
           />
         )}
       </div>
     </div>
   );
 }
-
-import IdolSearchList from "./IdolSearchList";
