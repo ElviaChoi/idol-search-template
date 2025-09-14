@@ -1,24 +1,57 @@
 import { http, HttpResponse } from "msw";
-import idols from "../data/idols.json";
+import { REAL_IDOLS, type Idol as RealIdol } from "../data/realIdols";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 24;
+const TRAINEE_COUNT = 800;
+
+const getAvatarUrl = (name: string, id: number) =>
+  `https://api.dicebear.com/7.x/fun-emoji/svg?seed=${encodeURIComponent(
+    name
+  )}-${id}`;
+
+type Idol = RealIdol;
+
+function makeTrainees(): Idol[] {
+  const POSITIONS = ["보컬", "댄스", "랩", "센터"];
+  const list: Idol[] = [];
+  for (let i = 1; i <= TRAINEE_COUNT; i++) {
+    const id = 1000 + i;
+    const name = `연습생${i}`;
+    list.push({
+      id,
+      name,
+      groupName: "연습생",
+      position: POSITIONS[i % POSITIONS.length],
+      avatarUrl: getAvatarUrl(name, id),
+    });
+  }
+  return list;
+}
+
+const ALL_IDOLS: Idol[] = [
+  ...REAL_IDOLS.map((i) => ({
+    ...i,
+    avatarUrl: i.avatarUrl?.trim() ? i.avatarUrl : getAvatarUrl(i.name, i.id),
+  })),
+  ...makeTrainees(),
+];
 
 export const handlers = [
   http.get("/api/idols/search", ({ request }) => {
     const url = new URL(request.url);
     const keyword = (url.searchParams.get("keyword") || "")
-      .toLowerCase()
-      .trim();
+      .trim()
+      .toLowerCase();
     const page = Number(url.searchParams.get("page") || "1");
 
-    const filtered = idols
-      .filter(
-        (i) =>
-          keyword &&
-          ((i.name || "").toLowerCase().includes(keyword) ||
-            (i.groupName || "").toLowerCase().includes(keyword))
-      )
-      .sort((a, b) => a.name.localeCompare(b.name));
+    if (!keyword)
+      return HttpResponse.json({ items: [], nextPage: null, total: 0 });
+
+    const filtered = ALL_IDOLS.filter(
+      (i) =>
+        i.name.toLowerCase().includes(keyword) ||
+        (i.groupName || "").toLowerCase().includes(keyword)
+    ).sort((a, b) => a.name.localeCompare(b.name));
 
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
