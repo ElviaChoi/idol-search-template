@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar";
 import { useDebounce } from "../../hooks/useDebounce";
 import IdolSearchList from "./IdolSearchList";
 import { useFavoriteStore } from "../../store/favorites";
+import IdolSearchStatus from "./IdolSearchStatus";
 
 export default function IdolSearchPage() {
   const [keyword, setKeyword] = useState("");
@@ -61,20 +62,13 @@ export default function IdolSearchPage() {
         className={`${items.length === 0 ? "min-h-40" : ""} ${
           isSearching ? "mt-8" : "mt-16"
         }`}
-      >        {isLoading && (
-          <p className='text-center text-fuchsia-400'>불러오는 중...</p>
-        )}
-        {isError && (
-          <p className='text-center text-fuchsia-800'>에러가 발생했습니다.</p>
-        )}
-        {!isLoading && !isError && isSearching && items.length === 0 && (
-          <p className='text-center text-fuchsia-400'>검색 결과가 없습니다.</p>
-        )}
-        {!isLoading && !isError && !isSearching && items.length === 0 && (
-          <p className='text-center text-fuchsia-400'>
-            찜한 아이돌이 없습니다.
-          </p>
-        )}
+      >
+        <IdolSearchStatus
+          isLoading={isLoading}
+          isError={isError}
+          isSearching={isSearching}
+          itemCount={items.length}
+        />
 
         {!isLoading && !isError && items.length > 0 && (
           <IdolSearchList
