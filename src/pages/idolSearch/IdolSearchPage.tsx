@@ -13,7 +13,10 @@ export default function IdolSearchPage() {
   const debounced = useDebounce(keyword, 300);
   const { favoriteIds, toggleFavorite } = useFavoriteStore();
 
-  const { data: allIdols = [] } = useQuery({ queryKey: ["idols"], queryFn: getAllIdols });
+  const { data: allIdols = [] } = useQuery({
+    queryKey: ["idols"],
+    queryFn: getAllIdols,
+  });
 
   const {
     data,
@@ -47,15 +50,18 @@ export default function IdolSearchPage() {
   const items = isSearching ? searchedItems : favoritedItems;
 
   return (
-    <div className='mx-auto max-w-6xl px-4 py-10'>
+    <div className='mx-auto max-w-6xl px-4 py-10 min-h-[calc(100vh-15rem)]'>
       <h1 className='text-2xl font-bold text-center'>아이돌 검색</h1>
 
       <div className='mt-6'>
         <SearchBar inputValue={keyword} onInputChange={onChange} />
       </div>
 
-      <div className='mt-8 min-h-40'>
-        {isLoading && (
+      <div
+        className={`${items.length === 0 ? "min-h-40" : ""} ${
+          isSearching ? "mt-8" : "mt-16"
+        }`}
+      >        {isLoading && (
           <p className='text-center text-fuchsia-400'>불러오는 중...</p>
         )}
         {isError && (
@@ -65,7 +71,9 @@ export default function IdolSearchPage() {
           <p className='text-center text-fuchsia-400'>검색 결과가 없습니다.</p>
         )}
         {!isLoading && !isError && !isSearching && items.length === 0 && (
-          <p className='text-center text-fuchsia-400'>찜한 아이돌이 없습니다.</p>
+          <p className='text-center text-fuchsia-400'>
+            찜한 아이돌이 없습니다.
+          </p>
         )}
 
         {!isLoading && !isError && items.length > 0 && (

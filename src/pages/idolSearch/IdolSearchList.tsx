@@ -53,7 +53,7 @@ export default function IdolSearchList({
           fetchNextPage();
         }
       }}
-      increaseViewportBy={{ top: 0, bottom: 100 }}
+      increaseViewportBy={isSearching ? { top: 0, bottom: 100 } : undefined}
       overscan={2}
       components={{ Footer: GridFooter }}
       context={{ isFetchingNextPage }}
