@@ -1,5 +1,4 @@
 import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import type { IdolCardProps } from "./card.types";
 
 export default function IdolCard({
@@ -7,19 +6,17 @@ export default function IdolCard({
   title = "",
   detail,
   idolId,
+  isFavorite,
   className,
   toggleFavorite,
   ...rest
 }: IdolCardProps) {
   const { idolGroup, position } = detail ?? {};
-  const [liked, setLiked] = useState(false);
 
   const handleClickLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (typeof toggleFavorite === "function" && typeof idolId === "number") {
       toggleFavorite(idolId);
-    } else {
-      setLiked((prev) => !prev);
     }
   };
 
@@ -47,11 +44,11 @@ export default function IdolCard({
         type='button'
         onClick={handleClickLike}
         className='absolute right-3 top-3 z-10'
-        aria-label={liked ? "즐겨찾기 해제" : "즐겨찾기 추가"}
+        aria-label={isFavorite ? "즐겨찾기 해제" : "즐겨찾기 추가"}
       >
         <HeartIcon
           className={`h-10 w-10 drop-shadow ${
-            liked ? "fill-fuchsia-500 text-fuchsia-700" : "text-fuchsia-400"
+            isFavorite ? "fill-fuchsia-500 text-fuchsia-700" : "text-fuchsia-400"
           }`}
         />
       </button>

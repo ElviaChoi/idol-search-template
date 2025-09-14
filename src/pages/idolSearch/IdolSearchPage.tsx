@@ -1,15 +1,19 @@
 import { useState, useMemo } from "react";
 import type { ChangeEvent } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { searchIdols } from "./api";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { searchIdols, getAllIdols } from "./api";
 import type { Idol } from "./types";
 import SearchBar from "./SearchBar";
 import { useDebounce } from "../../hooks/useDebounce";
 import IdolSearchList from "./IdolSearchList";
+import { useFavoriteStore } from "../../store/favorites";
 
 export default function IdolSearchPage() {
   const [keyword, setKeyword] = useState("");
   const debounced = useDebounce(keyword, 300);
+  const { favoriteIds, toggleFavorite } = useFavoriteStore();
+
+  const { data: allIdols = [] } = useQuery({ queryKey: ["idols"], queryFn: getAllIdols });
 
   const {
     data,
@@ -26,15 +30,21 @@ export default function IdolSearchPage() {
     getNextPageParam: (last) => last.nextPage ?? undefined,
   });
 
-  const items: Idol[] = useMemo(
+  const searchedItems: Idol[] = useMemo(
     () => data?.pages.flatMap((p) => p.items) ?? [],
     [data]
+  );
+
+  const favoritedItems = useMemo(
+    () => allIdols.filter((idol) => favoriteIds.includes(idol.id)),
+    [allIdols, favoriteIds]
   );
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
 
   const isSearching = debounced.trim().length > 0;
+  const items = isSearching ? searchedItems : favoritedItems;
 
   return (
     <div className='mx-auto max-w-6xl px-4 py-10'>
@@ -51,8 +61,11 @@ export default function IdolSearchPage() {
         {isError && (
           <p className='text-center text-fuchsia-800'>에러가 발생했습니다.</p>
         )}
-        {!isLoading && !isError && debounced && items.length === 0 && (
+        {!isLoading && !isError && isSearching && items.length === 0 && (
           <p className='text-center text-fuchsia-400'>검색 결과가 없습니다.</p>
+        )}
+        {!isLoading && !isError && !isSearching && items.length === 0 && (
+          <p className='text-center text-fuchsia-400'>찜한 아이돌이 없습니다.</p>
         )}
 
         {!isLoading && !isError && items.length > 0 && (
@@ -63,7 +76,7 @@ export default function IdolSearchPage() {
             hasNextPage={hasNextPage}
             fetchNextPage={fetchNextPage}
             onCardClick={() => {}}
-            toggleFavorite={() => {}}
+            toggleFavorite={toggleFavorite}
           />
         )}
       </div>

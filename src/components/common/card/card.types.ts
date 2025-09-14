@@ -9,5 +9,6 @@ export interface IdolCardProps extends BaseCardProps {
   imageSrc?: string;
   detail: { idolGroup?: string; position?: string };
   idolId?: number;
+  isFavorite?: boolean;
   toggleFavorite?: (id: number) => void;
 }

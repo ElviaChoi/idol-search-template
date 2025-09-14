@@ -2,6 +2,7 @@ import { VirtuosoGrid } from "react-virtuoso";
 import Card from "../../components/common/card";
 import type { Idol } from "./types";
 import GridFooter from "../../components/GridFooter";
+import { useFavoriteStore } from "../../store/favorites";
 
 type Props = {
   idols: Idol[];
@@ -22,6 +23,8 @@ export default function IdolSearchList({
   onCardClick,
   toggleFavorite,
 }: Props) {
+  const { favoriteIds } = useFavoriteStore();
+
   const renderItem = (_: number, idol: Idol) => (
     <div className='flex items-center justify-center p-2'>
       <Card
@@ -29,6 +32,7 @@ export default function IdolSearchList({
         idolId={Number(idol.id)}
         title={idol.name}
         imageSrc={idol.avatarUrl || ""}
+        isFavorite={favoriteIds.includes(idol.id)}
         detail={{
           idolGroup: idol.groupName ?? "",
           position: idol.position ?? "",

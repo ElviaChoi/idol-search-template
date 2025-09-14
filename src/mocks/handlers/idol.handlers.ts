@@ -39,6 +39,9 @@ const ALL_IDOLS: Idol[] = [
 ];
 
 export const handlers = [
+  http.get("/api/idols", () => {
+    return HttpResponse.json(ALL_IDOLS);
+  }),
   http.get("/api/idols/search", ({ request }) => {
     const url = new URL(request.url);
     const keyword = (url.searchParams.get("keyword") || "")

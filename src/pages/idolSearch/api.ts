@@ -1,4 +1,12 @@
-import type { SearchResponse } from "./types";
+import type { Idol, SearchResponse } from "./types";
+
+export async function getAllIdols(): Promise<Idol[]> {
+  const res = await fetch(`/api/idols`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch all idols: ${res.status}`);
+  }
+  return res.json();
+}
 
 export async function searchIdols(
   keyword: string,
