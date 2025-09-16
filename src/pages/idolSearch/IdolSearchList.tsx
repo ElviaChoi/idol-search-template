@@ -3,6 +3,7 @@ import Card from "../../components/common/card/Card";
 import type { Idol } from "./types";
 import { useFavoriteStore } from "../../store/favorites";
 import GridFooter from "../../components/GridFooter";
+import { cn } from "../../utils/cn";
 
 type Props = {
   idols: Idol[];
@@ -37,11 +38,11 @@ export default function IdolSearchList({
         List: (props) => (
           <div
             {...props}
-            className='grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-3 lg:gap-y-10'
+            className={cn('grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-3 lg:gap-y-10')}
           />
         ),
         Item: (props) => (
-          <div {...props} className='flex items-center justify-center p-2' />
+          <div {...props} className={cn('flex items-center justify-center p-2')} />
         ),
         Footer: GridFooter,
       }}

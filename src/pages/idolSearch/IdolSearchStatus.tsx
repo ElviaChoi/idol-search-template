@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "../../utils/cn";
 
 type IdolSearchStatusProps = {
   isLoading: boolean;
@@ -14,21 +15,21 @@ const IdolSearchStatus: React.FC<IdolSearchStatusProps> = ({
   itemCount,
 }) => {
   if (isLoading) {
-    return <p className='text-center text-fuchsia-400'>불러오는 중...</p>;
+    return <p className={cn('text-center text-fuchsia-400')}>불러오는 중...</p>;
   }
 
   if (isError) {
-    return <p className='text-center text-fuchsia-800'>에러가 발생했습니다.</p>;
+    return <p className={cn('text-center text-fuchsia-800')}>에러가 발생했습니다.</p>;
   }
 
   if (itemCount === 0) {
     if (isSearching) {
       return (
-        <p className='text-center text-fuchsia-400'>검색 결과가 없습니다.</p>
+        <p className={cn('text-center text-fuchsia-400')}>검색 결과가 없습니다.</p>
       );
     } else {
       return (
-        <p className='text-center text-gray-500 leading-relaxed'>
+        <p className={cn('text-center text-gray-500 leading-relaxed')}>
           아직 찜한 아이돌이 없어요. <br /> 검색해서 일정을 찾아보세요. 🔍
           <br />
           <br />

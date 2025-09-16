@@ -6,6 +6,7 @@ import IdolSearchList from "./IdolSearchList";
 import { useFavoriteStore } from "../../store/favorites";
 import IdolSearchStatus from "./IdolSearchStatus";
 import { useIdolSearch } from "../../hooks/useIdolSearch";
+import { cn } from "../../utils/cn";
 
 export default function IdolSearchPage() {
   const { favoriteIds } = useFavoriteStore();
@@ -35,7 +36,7 @@ export default function IdolSearchPage() {
   const items = isSearching ? searchedItems : favoritedItems;
 
   return (
-    <div className={`mx-auto max-w-6xl px-4 py-16 min-h-[calc(100vh-12rem)]`}>
+    <div className={cn(`mx-auto max-w-6xl px-4 py-16 min-h-[calc(100vh-12rem)]`)}>
       <h1 className='text-2xl font-bold text-center mt-4'>아이돌 검색하기</h1>
 
       <div className='mt-12'>
@@ -43,9 +44,10 @@ export default function IdolSearchPage() {
       </div>
 
       <div
-        className={`${isSearching ? "mt-8" : "mt-16"} ${
-          items.length === 0 ? "pt-7" : ""
-        }`}
+        className={cn(
+          isSearching ? "mt-8" : "mt-16",
+          items.length === 0 && "pt-7"
+        )}
       >
         <IdolSearchStatus
           isLoading={isLoading}

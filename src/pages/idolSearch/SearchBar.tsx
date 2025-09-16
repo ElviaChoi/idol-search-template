@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { cn } from "../../utils/cn";
 
 export type SearchBarProps = {
   placeholder?: string;
@@ -27,7 +28,7 @@ export default function SearchBar({
   };
 
   return (
-    <div className='relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg'>
+    <div className={cn('relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg')}>
       <input
         type='text'
         value={inputValue}
@@ -35,15 +36,15 @@ export default function SearchBar({
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         aria-label='검색어 입력'
-        className='w-full rounded-full border border-gray-300 bg-white px-6 py-2 pr-12 text-base text-gray-900 placeholder-gray-400 transition-colors duration-200 focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400 focus:outline-none'
+        className={cn('w-full rounded-full border border-gray-300 bg-white px-6 py-2 pr-12 text-base text-gray-900 placeholder-gray-400 transition-colors duration-200 focus:border-fuchsia-400 focus:ring-1 focus:ring-fuchsia-400 focus:outline-none')}
       />
       <button
         type='button'
         onClick={handleButtonClick}
         aria-label='검색'
-        className='absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400 transition-colors duration-200 hover:text-fuchsia-400'
+        className={cn('absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400 transition-colors duration-200 hover:text-fuchsia-400')}
       >
-        <MagnifyingGlassIcon className='h-6 w-6' />
+        <MagnifyingGlassIcon className={cn('h-6 w-6')} />
       </button>
     </div>
   );
