@@ -51,16 +51,16 @@ export default function IdolSearchPage() {
   const items = isSearching ? searchedItems : favoritedItems;
 
   return (
-    <div className='mx-auto max-w-6xl px-4 py-10 min-h-[calc(100vh-15rem)]'>
-      <h1 className='text-2xl font-bold text-center'>아이돌 검색</h1>
+    <div className={`mx-auto max-w-6xl px-4 py-16 min-h-[calc(100vh-12rem)]`}>
+      <h1 className='text-2xl font-bold text-center mt-4'>아이돌 검색하기</h1>
 
-      <div className='mt-6'>
+      <div className='mt-12'>
         <SearchBar inputValue={keyword} onInputChange={onChange} />
       </div>
 
       <div
-        className={`${items.length === 0 ? "min-h-40" : ""} ${
-          isSearching ? "mt-8" : "mt-16"
+        className={`${isSearching ? "mt-8" : "mt-16"} ${
+          items.length === 0 ? "pt-7" : ""
         }`}
       >
         <IdolSearchStatus
