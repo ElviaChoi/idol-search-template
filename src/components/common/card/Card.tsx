@@ -13,10 +13,12 @@ export default function Card({
   idolId,
   toggleFavorite,
   ...rest
-}) {
-  const handleClickLike = (e) => {
+}: CardProps) {
+  const handleClickLike = (e: React.MouseEvent) => {
     e.stopPropagation();
-    toggleFavorite?.(idolId);
+    if (typeof idolId === 'number') {
+      toggleFavorite?.(idolId);
+    }
   };
 
   return (

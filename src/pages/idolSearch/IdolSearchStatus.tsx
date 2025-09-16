@@ -33,9 +33,16 @@ export default function IdolSearchStatus({
 
   if (!isSearching && itemCount === 0) {
     return (
-      <p className={cn('text-center text-gray-500 leading-relaxed')}>
-        좋아하는 아이돌을 검색해보세요!
-      </p>
+      <div className={cn('text-center text-gray-500 leading-relaxed')}>
+        <p>
+          아직 찜한 아이돌이 없네요. 😢<br />
+          좋아하는 아이돌을 검색해서 찾아보세요!
+        </p>
+        <p className="mt-4">
+          하트를 눌러 찜하면,<br />
+          나만의 아이돌 컬렉션을 만들 수 있어요. 💖
+        </p>
+      </div>
     );
   }
 
