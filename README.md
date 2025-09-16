@@ -1,69 +1,78 @@
-# React + TypeScript + Vite
+# 아이돌 검색 서비스 템플릿 (Idol Search Template)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Live Demo
 
-Currently, two official plugins are available:
+(배포 후 여기에 Vercel 주소를 추가하세요)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+이 프로젝트는 아이돌 정보를 검색하고 즐겨찾기에 추가할 수 있는 기능을 제공하는 웹 애플리케이션 템플릿입니다. React와 TypeScript를 기반으로 하며, 모던 웹 개발을 위한 다양한 기술 스택을 포함하고 있습니다.
 
-## Expanding the ESLint configuration
+## 📸 스크린샷
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+(여기에 스크린샷을 추가하세요)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ 주요 기능
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **아이돌 검색**: 이름 또는 그룹명으로 아이돌을 실시간으로 검색할 수 있습니다.
+- **무한 스크롤**: 검색 결과가 많을 경우, 스크롤을 내리면 다음 데이터를 동적으로 불러옵니다.
+- **즐겨찾기**: 마음에 드는 아이돌을 즐겨찾기에 추가하거나 삭제할 수 있습니다.
+- **디바운싱**: 검색어 입력 시, 불필요한 API 요청을 최소화하기 위해 디바운싱(Debouncing) 기술을 적용했습니다.
+- **Mock API**: `msw` (Mock Service Worker)를 사용하여 실제 백엔드 없이도 개발 및 테스트가 가능하도록 API를 모킹했습니다.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ 기술 스택
+
+- **프레임워크/라이브러리**
+  - React
+  - TypeScript
+  - Vite
+- **상태 관리**
+  - Zustand
+- **데이터 페칭**
+  - TanStack Query (React Query)
+- **스타일링**
+  - Tailwind CSS
+- **가상 리스트**
+  - React Virtuoso
+- **API 모킹**
+  - Mock Service Worker (msw)
+
+## 🚀 시작하기
+
+프로젝트를 로컬 환경에서 실행하려면 다음 단계를 따르세요.
+
+### 사전 준비
+
+- Node.js (v18 이상 권장)
+- npm, yarn, 또는 pnpm
+
+### 설치
+
+1. 프로젝트를 클론합니다.
+   ```bash
+   git clone https://github.com/ElviaChoi/idol-search-template.git
+   ```
+2. 프로젝트 디렉터리로 이동합니다.
+   ```bash
+   cd idol-search-template
+   ```
+3. 의존성을 설치합니다.
+   ```bash
+   npm install
+   ```
+
+### 실행
+
+개발 서버를 시작하려면 다음 명령어를 실행하세요.
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+애플리케이션이 `http://localhost:5173` (또는 다른 포트)에서 실행됩니다.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📜 사용 가능한 스크립트
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `npm run dev`: 개발 서버를 시작합니다.
+- `npm run build`: 프로덕션용으로 프로젝트를 빌드합니다.
+- `npm run lint`: ESLint를 사용하여 코드 스타일을 검사합니다.
+- `npm run format`: Prettier를 사용하여 코드를 포맷팅합니다.
+- `npm run preview`: 프로덕션 빌드를 미리 봅니다.
