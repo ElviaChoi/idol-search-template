@@ -10,19 +10,17 @@ type Props = {
   hasNextPage?: boolean;
   fetchNextPage: () => void;
   isFetchingNextPage: boolean;
-  onCardClick: (id: number) => void;
-  toggleFavorite: (id: number) => void;
+  // onCardClick: (id: number) => void;
 };
 
 export default function IdolSearchList({
   idols,
-  onCardClick,
-  toggleFavorite,
+  // onCardClick,
   fetchNextPage,
   hasNextPage,
   isFetchingNextPage,
 }: Props) {
-  const { favoriteIds } = useFavoriteStore();
+  const { favoriteIds, toggleFavorite } = useFavoriteStore();
 
   const loadMore = () => {
     if (hasNextPage) {
@@ -59,7 +57,7 @@ export default function IdolSearchList({
             idolGroup: idol.groupName ?? "",
             position: idol.position ?? "",
           }}
-          onClick={() => onCardClick(Number(idol.id))}
+          // onClick={() => onCardClick(Number(idol.id))}
           toggleFavorite={toggleFavorite}
         />
       )}

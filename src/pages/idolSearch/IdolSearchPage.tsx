@@ -8,7 +8,7 @@ import IdolSearchStatus from "./IdolSearchStatus";
 import { useIdolSearch } from "../../hooks/useIdolSearch";
 
 export default function IdolSearchPage() {
-  const { favoriteIds, toggleFavorite } = useFavoriteStore();
+  const { favoriteIds } = useFavoriteStore();
 
   const { data: allIdols = [] } = useQuery({
     queryKey: ["idols"],
@@ -61,8 +61,6 @@ export default function IdolSearchPage() {
             isFetchingNextPage={isFetchingNextPage}
             hasNextPage={hasNextPage}
             fetchNextPage={fetchNextPage}
-            onCardClick={() => {}}
-            toggleFavorite={toggleFavorite}
           />
         )}
       </div>
