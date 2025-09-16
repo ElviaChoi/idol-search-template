@@ -4,7 +4,7 @@ export interface BaseCardProps extends React.HTMLAttributes<HTMLDivElement> {
   type: CardTypes;
 }
 
-export interface IdolCardProps extends BaseCardProps {
+export interface CardProps extends BaseCardProps {
   title: string;
   imageSrc?: string;
   detail: { idolGroup?: string; position?: string };

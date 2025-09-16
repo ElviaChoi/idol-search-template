@@ -1,5 +1,5 @@
 import { VirtuosoGrid } from "react-virtuoso";
-import Card from "../../components/common/card";
+import Card from "../../components/common/card/Card";
 import type { Idol } from "./types";
 import { useFavoriteStore } from "../../store/favorites";
 import GridFooter from "../../components/GridFooter";
@@ -51,7 +51,6 @@ export default function IdolSearchList({
       }}
       itemContent={(_index, idol) => (
         <Card
-          type='idol'
           idolId={Number(idol.id)}
           title={idol.name}
           imageSrc={idol.avatarUrl || ""}
