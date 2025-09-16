@@ -43,7 +43,7 @@ export default function Card({
         type='button'
         onClick={handleClickLike}
         className={cn('absolute right-3 top-3 z-10')}
-        aria-label={isFavorite ? "利寃⑥갼湲 댁" : "利寃⑥갼湲 異媛"}
+        aria-label={isFavorite ? "즐겨찾기 해제" : "즐겨찾기 추가"}
       >
         <HeartIcon
           className={cn(`h-10 w-10 drop-shadow`, isFavorite ? "fill-fuchsia-500 text-fuchsia-700" : "text-fuchsia-400")}
