@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-(배포 후 여기에 Vercel 주소를 추가하세요)
+(https://idol-search-template.vercel.app/)
 
 이 프로젝트는 아이돌 정보를 검색하고 즐겨찾기에 추가할 수 있는 기능을 제공하는 웹 애플리케이션 템플릿입니다. React와 TypeScript를 기반으로 하며, 모던 웹 개발을 위한 다양한 기술 스택을 포함하고 있습니다.
 
