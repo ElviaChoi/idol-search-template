@@ -1,17 +1,13 @@
-import { useState, useMemo } from "react";
-import type { ChangeEvent } from "react";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { searchIdols, getAllIdols } from "./api";
-import type { Idol } from "./types";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAllIdols } from "./api";
 import SearchBar from "./SearchBar";
-import { useDebounce } from "../../hooks/useDebounce";
 import IdolSearchList from "./IdolSearchList";
 import { useFavoriteStore } from "../../store/favorites";
 import IdolSearchStatus from "./IdolSearchStatus";
+import { useIdolSearch } from "../../hooks/useIdolSearch";
 
 export default function IdolSearchPage() {
-  const [keyword, setKeyword] = useState("");
-  const debounced = useDebounce(keyword, 300);
   const { favoriteIds, toggleFavorite } = useFavoriteStore();
 
   const { data: allIdols = [] } = useQuery({
@@ -20,34 +16,22 @@ export default function IdolSearchPage() {
   });
 
   const {
-    data,
+    keyword,
+    searchedItems,
     isLoading,
     isError,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["idols", "search", debounced],
-    enabled: debounced.trim().length > 0,
-    initialPageParam: 1,
-    queryFn: ({ pageParam = 1 }) => searchIdols(debounced, pageParam),
-    getNextPageParam: (last) => last.nextPage ?? undefined,
-  });
-
-  const searchedItems: Idol[] = useMemo(
-    () => data?.pages.flatMap((p) => p.items) ?? [],
-    [data]
-  );
+    onChangeKeyword,
+    isSearching,
+  } = useIdolSearch();
 
   const favoritedItems = useMemo(
     () => allIdols.filter((idol) => favoriteIds.includes(idol.id)),
     [allIdols, favoriteIds]
   );
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setKeyword(e.target.value);
-
-  const isSearching = debounced.trim().length > 0;
   const items = isSearching ? searchedItems : favoritedItems;
 
   return (
@@ -55,7 +39,7 @@ export default function IdolSearchPage() {
       <h1 className='text-2xl font-bold text-center mt-4'>아이돌 검색하기</h1>
 
       <div className='mt-12'>
-        <SearchBar inputValue={keyword} onInputChange={onChange} />
+        <SearchBar inputValue={keyword} onInputChange={onChangeKeyword} />
       </div>
 
       <div

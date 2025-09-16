@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 import { REAL_IDOLS, type Idol as RealIdol } from "../data/realIdols";
 
 const PAGE_SIZE = 24;
@@ -42,7 +42,8 @@ export const handlers = [
   http.get("/api/idols", () => {
     return HttpResponse.json(ALL_IDOLS);
   }),
-  http.get("/api/idols/search", ({ request }) => {
+  http.get("/api/idols/search", async ({ request }) => {
+    await delay(1500);
     const url = new URL(request.url);
     const keyword = (url.searchParams.get("keyword") || "")
       .trim()
