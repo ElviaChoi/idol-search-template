@@ -4,10 +4,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { searchIdols } from "../pages/idolSearch/api";
 import { useDebounce } from "./useDebounce";
 import type { Idol } from "../pages/idolSearch/types";
+import { DEBOUNCE_DELAY_MS } from "../constants";
 
 export function useIdolSearch() {
   const [keyword, setKeyword] = useState("");
-  const debouncedKeyword = useDebounce(keyword, 300);
+  const debouncedKeyword = useDebounce(keyword, DEBOUNCE_DELAY_MS);
 
   const {
     data,

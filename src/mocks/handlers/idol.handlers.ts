@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from "msw";
 import { REAL_IDOLS, type Idol as RealIdol } from "../data/realIdols";
+import { PAGE_SIZE, API_DELAY_MS } from "../../constants";
 
-const PAGE_SIZE = 24;
 const TRAINEE_COUNT = 800;
 
 const getAvatarUrl = (name: string, id: number) =>
@@ -43,7 +43,7 @@ export const handlers = [
     return HttpResponse.json(ALL_IDOLS);
   }),
   http.get("/api/idols/search", async ({ request }) => {
-    await delay(1500);
+    await delay(API_DELAY_MS);
     const url = new URL(request.url);
     const keyword = (url.searchParams.get("keyword") || "")
       .trim()
