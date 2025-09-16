@@ -1,6 +1,6 @@
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils";
 
 export default function Footer() {
   return (

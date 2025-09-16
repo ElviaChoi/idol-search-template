@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils";
 
 export type SearchBarProps = {
   placeholder?: string;

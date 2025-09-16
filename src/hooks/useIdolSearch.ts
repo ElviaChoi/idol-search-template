@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import type { ChangeEvent } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { searchIdols } from "../pages/idolSearch/api";
-import { useDebounce } from "./useDebounce";
-import type { Idol } from "../pages/idolSearch/types";
+import { searchIdols } from "@/pages/idolSearch";
+import type { Idol } from "@/pages/idolSearch/types";
+import { useDebounce } from "@/hooks";
 import { DEBOUNCE_DELAY_MS } from "../constants";
 
 export function useIdolSearch() {

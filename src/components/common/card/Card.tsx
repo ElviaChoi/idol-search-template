@@ -1,24 +1,22 @@
 import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
 import type { CardProps } from "./card.types";
-import { cn } from "../../../utils/cn";
+import { cn } from "@/utils";
 
 export default function Card({
   imageSrc = "",
-  title = "",
-  detail,
-  idolId,
+  title,
+  idolGroup,
+  position,
   isFavorite,
+  onClick,
   className,
+  idolId,
   toggleFavorite,
   ...rest
-}: CardProps) {
-  const { idolGroup, position } = detail ?? {};
-
-  const handleClickLike = (e: React.MouseEvent) => {
+}) {
+  const handleClickLike = (e) => {
     e.stopPropagation();
-    if (typeof toggleFavorite === "function" && typeof idolId === "number") {
-      toggleFavorite(idolId);
-    }
+    toggleFavorite?.(idolId);
   };
 
   return (
@@ -43,7 +41,7 @@ export default function Card({
         type='button'
         onClick={handleClickLike}
         className={cn('absolute right-3 top-3 z-10')}
-        aria-label={isFavorite ? "즐겨찾기 해제" : "즐겨찾기 추가"}
+        aria-label={isFavorite ? "利寃⑥갼湲 댁" : "利寃⑥갼湲 異媛"}
       >
         <HeartIcon
           className={cn(`h-10 w-10 drop-shadow`, isFavorite ? "fill-fuchsia-500 text-fuchsia-700" : "text-fuchsia-400")}

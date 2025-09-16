@@ -1,7 +1,6 @@
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import IdolSearchPage from "./pages/idolSearch/IdolSearchPage";
-import { cn } from "./utils/cn";
+import { Header, Footer } from "@/components/layout";
+import { IdolSearchPage } from "@/pages/idolSearch";
+import { cn } from "@/utils";
 
 export default function App() {
   return (

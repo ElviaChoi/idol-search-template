@@ -1,12 +1,9 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getAllIdols } from "./api";
-import SearchBar from "./SearchBar";
-import IdolSearchList from "./IdolSearchList";
+import { getAllIdols, SearchBar, IdolSearchList, IdolSearchStatus } from "@/pages/idolSearch";
 import { useFavoriteStore } from "../../store/favorites";
-import IdolSearchStatus from "./IdolSearchStatus";
-import { useIdolSearch } from "../../hooks/useIdolSearch";
-import { cn } from "../../utils/cn";
+import { useIdolSearch } from "@/hooks";
+import { cn } from "@/utils";
 
 export default function IdolSearchPage() {
   const { favoriteIds } = useFavoriteStore();
