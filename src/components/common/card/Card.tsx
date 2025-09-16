@@ -1,5 +1,5 @@
 import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
-import type { CardProps } from "./card.types";
+import type { CardProps } from "@/components/common/card/card.types";
 import { cn } from "@/utils";
 
 export default function Card({

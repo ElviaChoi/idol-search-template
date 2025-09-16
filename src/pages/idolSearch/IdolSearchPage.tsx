@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllIdols, SearchBar, IdolSearchList, IdolSearchStatus } from "@/pages/idolSearch";
-import { useFavoriteStore } from "../../store/favorites";
+import { useFavoriteStore } from "@/store/favorites";
 import { useIdolSearch } from "@/hooks";
 import { cn } from "@/utils";
 
