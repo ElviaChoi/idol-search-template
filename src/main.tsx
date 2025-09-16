@@ -6,13 +6,13 @@ import "./index.css";
 
 const queryClient = new QueryClient();
 
-if (import.meta.env.DEV) {
-  const { worker } = await import("./mocks/browser");
-  await worker.start({
-    serviceWorker: { url: "/mockServiceWorker.js" },
-    onUnhandledRequest: "bypass",
-  });
-}
+// if (import.meta.env.DEV) {
+const { worker } = await import("./mocks/browser");
+await worker.start({
+  serviceWorker: { url: "/mockServiceWorker.js" },
+  onUnhandledRequest: "bypass",
+});
+// }
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
