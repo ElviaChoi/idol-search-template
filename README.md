@@ -48,6 +48,10 @@
 - **API 모킹**
   - Mock Service Worker (msw)
 
+## 🧑‍💻 개발 도구
+
+- **[Gemini CLI](https://developers.google.com/studio/preview/gemini-cli)**: 이 프로젝트의 일부는 Gemini CLI를 사용하여 개발되었습니다.
+
 ## 🚀 시작하기
 
 프로젝트를 로컬 환경에서 실행하려면 다음 단계를 따르세요.
