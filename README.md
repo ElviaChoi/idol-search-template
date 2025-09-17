@@ -10,15 +10,18 @@
 
 ### 찜하기
 
-(찜하기 GIF)
+![찜하기](https://github.com/user-attachments/assets/7a5c9a97-b4e3-4ec9-a5dc-d46d9ff6607d)
+
 
 ### 무한 스크롤
 
-(무한 스크롤 GIF)
+![무한스크롤](https://github.com/user-attachments/assets/b8583911-01f9-4a82-9501-606c3d686568)
+
 
 ### 가상 스크롤
 
-(가상 스크롤 GIF)
+![가상스크롤](https://github.com/user-attachments/assets/4bbf33da-5e64-465b-8d7f-c995eda41c9a)
+
 
 ## ✨ 주요 기능
 
